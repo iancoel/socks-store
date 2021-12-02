@@ -28,7 +28,7 @@ const Header: React.FC = () => {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <img src={logoDefault} alt="logo" className="logo" />
+      <img src={logoDefault} alt="Logo" className="logo" />
       <Tabs value={value} onChange={handleChange}>
         <LinkTab label="Home" href="/" />
         <LinkTab label="Checkout" href="/" />
