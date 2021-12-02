@@ -1,23 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 
-import api from '../../services/api';
+import api from '@/services/api';
+import { addNewProduct } from '@/store/modules/cart/actions';
 
-interface IProducts {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  offer: boolean;
-  category: number[];
-  description: string;
-  discount: number;
-}
+import { IProduct } from '@/types';
 
 const Home: React.FC = () => {
-  const [list, setList] = useState<IProducts[]>([]);
+  const dispatch = useDispatch();
+
+  const [list, setList] = useState<IProduct[]>([]);
 
   useEffect(() => {
     api
@@ -26,11 +22,17 @@ const Home: React.FC = () => {
       .catch((e) => console.error(e));
   }, []);
 
-  console.log(list);
+  const handleAddCart = (item: IProduct) => {
+    dispatch(addNewProduct(item));
+  };
 
   return (
     <div className="card">
-      <p>Home</p>
+      <Header />
+      <h1>Home</h1>
+
+      <Link to="checkout">Checkout</Link>
+
       {list?.map((item) => (
         <div key={item.id}>
           <h3>{item.name}</h3>
@@ -42,8 +44,13 @@ const Home: React.FC = () => {
               currency: 'BRL',
             }).format(item.price)}
           </h3>
+          <button onClick={() => handleAddCart(item)}>
+            Adicionar ao carrinho
+          </button>
         </div>
       ))}
+
+      <Footer />
     </div>
   );
 };

@@ -12,7 +12,11 @@ const storeCart: Reducer<ICartState | any> = (
 ) => {
   switch (action.type) {
     case 'ADD_CART': {
-      console.log(action.payload);
+      const { cart } = action.payload;
+      return {
+        ...state,
+        cart: [...state.cart, cart],
+      };
     }
     default: {
       return state;
