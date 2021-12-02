@@ -28,11 +28,6 @@ const Home: React.FC = () => {
 
   return (
     <div className="card">
-      <Header />
-      <h1>Home</h1>
-
-      <Link to="checkout">Checkout</Link>
-
       {list?.map((item) => (
         <div key={item.id}>
           <h3>{item.name}</h3>

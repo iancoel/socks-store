@@ -8,3 +8,8 @@ export interface IProduct {
   description: string;
   discount: number;
 }
+
+export interface ILinkTab {
+  label?: string;
+  href: string;
+}
