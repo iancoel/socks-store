@@ -13,3 +13,7 @@ export interface ILinkTab {
   label?: string;
   href: string;
 }
+
+export interface ILoadComponent {
+  show: boolean;
+}
