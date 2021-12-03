@@ -11,7 +11,6 @@ const Checkout: React.FC = () => {
     <div>
       <h2>Checkout</h2>
       <h3>Your cart contains {state.length} items</h3>
-      <Link to="/">Home</Link>
       {state?.map((item, index) => (
         <div>
           <h4>{item.name}</h4>

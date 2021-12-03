@@ -27,17 +27,26 @@ const Cart: React.FC = () => {
         onOpen={handleCart}
       >
         <Container>
-          {state?.map((item, index) => (
+          {state.length === 0 ? (
             <div>
-              <h4>{item.name}</h4>
-              <h3>
-                {Intl.NumberFormat('pt-BR', {
-                  style: 'currency',
-                  currency: 'BRL',
-                }).format(item.price)}
-              </h3>
+              <h1>Oooops</h1>
+              <p>Your cart is empty</p>
             </div>
-          ))}
+          ) : (
+            <>
+              {state?.map((item, index) => (
+                <div>
+                  <h4>{item.name}</h4>
+                  <h3>
+                    {Intl.NumberFormat('pt-BR', {
+                      style: 'currency',
+                      currency: 'BRL',
+                    }).format(item.price)}
+                  </h3>
+                </div>
+              ))}
+            </>
+          )}
         </Container>
       </SwipeableDrawer>
     </>

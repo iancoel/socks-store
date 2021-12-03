@@ -17,3 +17,14 @@ export interface ILinkTab {
 export interface ILoadComponent {
   show: boolean;
 }
+
+export interface ICardComponent {
+  textTitle: string;
+  img: string;
+  altText: string;
+  keyValue?: number;
+  descriptionText: string;
+  priceText: number;
+  handleAction: (value: IProduct) => void;
+  itemDefault: IProduct;
+}

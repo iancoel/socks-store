@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
 
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
+import {
+  Grid,
+  Card,
+  CardHeader,
+  CardMedia,
+  Container,
+  CardActions,
+  Button,
+  CardContent,
+} from '@mui/material';
+
+import CardComponent from '@/components/Card';
+import LoaderComponent from '@/components/Loader';
 
 import api from '@/services/api';
 import { addNewProduct } from '@/store/modules/cart/actions';
@@ -14,39 +24,50 @@ const Home: React.FC = () => {
   const dispatch = useDispatch();
 
   const [list, setList] = useState<IProduct[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    setIsLoaded(true);
     api
       .get('products')
       .then((r) => setList(r.data))
-      .catch((e) => console.error(e));
+      .catch((e) => console.error(e))
+      .finally(() => {
+        setTimeout(() => setIsLoaded(false), 2500);
+      });
   }, []);
 
   const handleAddCart = (item: IProduct) => {
     dispatch(addNewProduct(item));
   };
 
-  return (
-    <div className="card">
-      {list?.map((item) => (
-        <div key={item.id}>
-          <h3>{item.name}</h3>
-          <img src={item.image} alt={item.name} />
-          <p>{item.description}</p>
-          <h3>
-            {Intl.NumberFormat('pt-BR', {
-              style: 'currency',
-              currency: 'BRL',
-            }).format(item.price)}
-          </h3>
-          <button onClick={() => handleAddCart(item)}>
-            Adicionar ao carrinho
-          </button>
-        </div>
-      ))}
+  if (isLoaded) {
+    return <LoaderComponent show={isLoaded} />;
+  }
 
-      <Footer />
-    </div>
+  return (
+    <Container>
+      <Grid
+        container
+        columns={{ md: 12 }}
+        spacing={1}
+        justifyContent="center"
+        alignItems="center"
+      >
+        {list?.map((item) => (
+          <CardComponent
+            textTitle={item.name}
+            img={item.image}
+            altText={item.name}
+            descriptionText={item.description}
+            keyValue={item.id}
+            priceText={item.price}
+            handleAction={handleAddCart(item)}
+            itemDefault={item}
+          />
+        ))}
+      </Grid>
+    </Container>
   );
 };
 
