@@ -22,6 +22,7 @@ const CardComponent: React.FC<ICardComponent> = (props) => {
     priceText,
     handleAction,
     itemDefault,
+    handleDetails,
   } = props;
   return (
     <Grid item xs key={keyValue}>
@@ -43,7 +44,14 @@ const CardComponent: React.FC<ICardComponent> = (props) => {
             }).format(priceText)}
           </h3>
         </CardContent>
-        <CardActions>
+        <CardActions style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Button
+            color="secondary"
+            onClick={() => handleDetails(keyValue)}
+            variant="contained"
+          >
+            Details
+          </Button>
           <Button onClick={() => handleAction(itemDefault)} variant="contained">
             Adicionar ao carrinho
           </Button>

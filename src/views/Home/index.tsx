@@ -1,16 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 
-import {
-  Grid,
-  Card,
-  CardHeader,
-  CardMedia,
-  Container,
-  CardActions,
-  Button,
-  CardContent,
-} from '@mui/material';
+import { Grid, Container } from '@mui/material';
 
 import CardComponent from '@/components/Card';
 import LoaderComponent from '@/components/Loader';
@@ -25,6 +17,8 @@ const Home: React.FC = () => {
 
   const [list, setList] = useState<IProduct[]>([]);
   const [isLoaded, setIsLoaded] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsLoaded(true);
@@ -41,6 +35,10 @@ const Home: React.FC = () => {
     dispatch(addNewProduct(item));
   };
 
+  const handleDetailsProduct = (item: number) => {
+    navigate(`/produtos/${item}`);
+  };
+
   if (isLoaded) {
     return <LoaderComponent show={isLoaded} />;
   }
@@ -53,6 +51,7 @@ const Home: React.FC = () => {
         spacing={1}
         justifyContent="center"
         alignItems="center"
+        style={{ paddingTop: 40, paddingBottom: 40 }}
       >
         {list?.map((item) => (
           <CardComponent
@@ -64,6 +63,7 @@ const Home: React.FC = () => {
             priceText={item.price}
             handleAction={handleAddCart(item)}
             itemDefault={item}
+            handleDetails={handleDetailsProduct}
           />
         ))}
       </Grid>

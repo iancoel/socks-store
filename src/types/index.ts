@@ -27,4 +27,5 @@ export interface ICardComponent {
   priceText: number;
   handleAction: (value: IProduct) => void;
   itemDefault: IProduct;
+  handleDetails: (value: number) => void;
 }
