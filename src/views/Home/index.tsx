@@ -64,6 +64,7 @@ const Home: React.FC = () => {
             handleAction={handleAddCart(item)}
             itemDefault={item}
             handleDetails={handleDetailsProduct}
+            key={item.id}
           />
         ))}
       </Grid>
