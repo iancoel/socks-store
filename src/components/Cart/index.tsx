@@ -35,8 +35,9 @@ const Cart: React.FC = () => {
           ) : (
             <>
               {state?.map((item, index) => (
-                <div>
+                <div key={index}>
                   <h4>{item.name}</h4>
+                  <img src={item.image} alt={item.name} />
                   <h3>
                     {Intl.NumberFormat('pt-BR', {
                       style: 'currency',

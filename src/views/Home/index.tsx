@@ -61,7 +61,7 @@ const Home: React.FC = () => {
             descriptionText={item.description}
             keyValue={item.id}
             priceText={item.price}
-            handleAction={handleAddCart(item)}
+            handleAction={handleAddCart}
             itemDefault={item}
             handleDetails={handleDetailsProduct}
             key={item.id}
