@@ -23,9 +23,24 @@
   }
 }
 
+.newsletter-content {
+  background-color: $bgGrey;
+  text-align: center;
+  color: $bgBlue;
+  padding: $p40 0;
+
+  form {
+    margin-top: $p40;
+
+    input {
+      color: $colorDefault;
+    }
+  }
+}
+
 footer {
-  background-color: darkorange;
+  background-color: $bgOrange;
   color: $colorDefault;
   text-align: center;
-  padding: 50px 0;
+  padding: 80px 0;
 }

@@ -49,7 +49,7 @@ const ProductDetails: React.FC = () => {
                 currency: 'BRL',
               }).format(item.price)}
             </h3>
-            <h5>{item.discount}% OFF</h5>
+            {item.discount > 0 ? <h5>{item.discount}% Off</h5> : '  '}
           </Grid>
         </Grid>
       ))}

@@ -12,6 +12,8 @@ import { addNewProduct } from '@/store/modules/cart/actions';
 
 import { IProduct } from '@/types';
 
+import { toast } from 'react-toastify';
+
 const Home: React.FC = () => {
   const dispatch = useDispatch();
 
@@ -33,6 +35,7 @@ const Home: React.FC = () => {
 
   const handleAddCart = (item: IProduct) => {
     dispatch(addNewProduct(item));
+    toast.success('Added product to cart');
   };
 
   const handleDetailsProduct = (item: number) => {
