@@ -8,6 +8,7 @@ export const convertToCurrency = (value: number) => {
 };
 
 export const getDiscountPrice = (discount: number, price: number) => {
+  if (discount === 0) return convertToCurrency(price);
   const result = price - (price * discount) / 100;
   return convertToCurrency(result);
 };

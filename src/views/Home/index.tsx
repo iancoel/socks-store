@@ -68,7 +68,7 @@ const Home: React.FC = () => {
             itemDefault={item}
             handleDetails={handleDetailsProduct}
             key={item.id}
-            discountValue={item.price}
+            discountValue={item.discount}
           />
         ))}
       </Grid>

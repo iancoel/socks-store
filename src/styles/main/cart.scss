@@ -4,11 +4,11 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  min-height: 90vh;
+  height: 100vh;
   min-width: 300px;
   justify-content: center;
   align-items: center;
-  color: $bgOrange;
+  color: $colorSecondary;
 }
 
 .cart-content {
@@ -16,13 +16,13 @@
   overflow-y: auto;
 
   &::after {
+    content: '';
+    display: block;
     position: absolute;
     top: 0;
     left: 0;
-    display: block;
     height: 100%;
     width: 100%;
-    content: '';
     background-image: url(https://cdn.wallpapersafari.com/26/38/suc4Nm.jpeg);
     background-repeat: no-repeat;
     background-size: cover;
@@ -31,8 +31,8 @@
   }
 
   .checkout-subtotal {
-    background: #fff;
-    width: 100%;
+    background: $bgWhite;
+    min-width: 100%;
     padding: $p10;
     border-radius: $p10 $p10 0 0;
     position: absolute;
@@ -43,8 +43,18 @@
   }
 
   .cart-element {
+    margin: 20px 0 20px 0;
     &:nth-last-child(2) {
-      margin-bottom: 120px;
+      margin-bottom: 140px;
+    }
+    .progress {
+      background-color: rgba(255, 255, 255, 0.548);
+      width: 200px;
+      height: 130px;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
   }
 }
