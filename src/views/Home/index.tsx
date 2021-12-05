@@ -34,7 +34,8 @@ const Home: React.FC = () => {
   }, []);
 
   const handleAddCart = (item: IProduct) => {
-    dispatch(addNewProduct(item));
+    const newItem = { ...item, qtd: 0 };
+    dispatch(addNewProduct(newItem));
     toast.success('Added product to cart');
   };
 
@@ -62,12 +63,12 @@ const Home: React.FC = () => {
             img={item.image}
             altText={item.name}
             descriptionText={item.description}
-            keyValue={item.id}
             priceText={item.price}
             handleAction={handleAddCart}
             itemDefault={item}
             handleDetails={handleDetailsProduct}
             key={item.id}
+            discountValue={item.price}
           />
         ))}
       </Grid>

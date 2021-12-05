@@ -10,6 +10,8 @@ import {
   CardContent,
 } from '@mui/material';
 
+import { getDiscountPrice } from '@/utils';
+
 import { ICardComponent } from '@/types';
 
 const CardComponent: React.FC<ICardComponent> = (props) => {
@@ -18,14 +20,14 @@ const CardComponent: React.FC<ICardComponent> = (props) => {
     img,
     altText,
     descriptionText,
-    keyValue,
     priceText,
     handleAction,
     itemDefault,
     handleDetails,
+    discountValue,
   } = props;
   return (
-    <Grid item xs key={keyValue}>
+    <Grid item xs>
       <Card sx={{ maxWidth: 345 }}>
         <CardHeader title={textTitle} />
         <CardMedia
@@ -37,23 +39,22 @@ const CardComponent: React.FC<ICardComponent> = (props) => {
         />
         <CardContent>
           <p>{descriptionText}</p>
-          <h3>
-            {Intl.NumberFormat('pt-BR', {
-              style: 'currency',
-              currency: 'BRL',
-            }).format(priceText)}
-          </h3>
+          <h3>{getDiscountPrice(discountValue, priceText)}</h3>
         </CardContent>
         <CardActions style={{ justifyContent: 'center', alignItems: 'center' }}>
           <Button
             color="secondary"
-            onClick={() => handleDetails(keyValue)}
+            onClick={() => handleDetails(itemDefault.id)}
             variant="contained"
           >
             Details
           </Button>
-          <Button onClick={() => handleAction(itemDefault)} variant="contained">
-            Adicionar ao carrinho
+          <Button
+            onClick={() => handleAction(itemDefault)}
+            variant="contained"
+            color="primary"
+          >
+            Add to cart
           </Button>
         </CardActions>
       </Card>

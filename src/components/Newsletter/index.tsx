@@ -75,7 +75,7 @@ const Newsletter: React.FC = () => {
                 color="info"
                 style={{ margin: 8 }}
                 onChange={(e) =>
-                  setUserData({ ...userData, email: e.target.value })
+                  setUserData({ ...userData, name: e.target.value })
                 }
               />
               <Button

@@ -8,6 +8,7 @@ import Loader from '@/components/Loader';
 import api from '@/services/api';
 
 import { IProduct } from '@/types';
+import { getDiscountPrice } from '@/utils';
 
 const ProductDetails: React.FC = () => {
   const { id } = useParams();
@@ -43,12 +44,7 @@ const ProductDetails: React.FC = () => {
           </Grid>
           <Grid item xs>
             <p>{item.description}</p>
-            <h3>
-              {Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL',
-              }).format(item.price)}
-            </h3>
+            <h3>{getDiscountPrice(item.discount, item.price)}</h3>
             {item.discount > 0 ? <h5>{item.discount}% Off</h5> : '  '}
           </Grid>
         </Grid>

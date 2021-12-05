@@ -8,3 +8,21 @@ export function addNewProduct(cart: ICartStore) {
     },
   };
 }
+
+export function incrementItem(cart: ICartStore) {
+  return {
+    type: 'INCREMENT_ITEM',
+    payload: {
+      cart,
+    },
+  };
+}
+
+export function decrementItem(cart: ICartStore) {
+  return {
+    type: 'DECREMENT_ITEM',
+    payload: {
+      cart,
+    },
+  };
+}

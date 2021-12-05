@@ -7,6 +7,7 @@ export interface IProduct {
   category: number[];
   description: string;
   discount: number;
+  qtd?: number;
 }
 
 export interface ILinkTab {
@@ -22,15 +23,15 @@ export interface ICardComponent {
   textTitle: string;
   img: string;
   altText: string;
-  keyValue?: number;
   descriptionText: string;
   priceText: number;
   handleAction: (value: IProduct) => void;
   itemDefault: IProduct;
+  discountValue: number;
   handleDetails: (value: number) => void;
 }
 
 export interface IUserData {
-  name: string;
-  email: string;
+  name?: string;
+  email?: string;
 }
